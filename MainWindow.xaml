@@ -1,0 +1,34 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Threads" d:DataContext="{d:DesignInstance Type=local:DatCon}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="600">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+            <Border MinWidth="350" Height="50" Margin="5" Background="AntiqueWhite" BorderBrush="Black" BorderThickness="1">
+                <StackPanel Margin="2,5" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ProgressBar x:Name="PG123" Width="250" Height="25" Orientation="Horizontal" Value="{Binding Proc, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Margin="5,0,0,0" MinWidth="20" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding Proc}"/>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="/"/>
+                    <TextBlock x:Name="Opt" MinWidth="20" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding NCProc}"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Button Grid.Row="1" Height="30" Width="200" Click="Button_Click" Content="Заново"/>
+        <Button Grid.Row="2" Height="30" Width="200" Click="Button_Click1" Content="Отметка для звукового сигнала"/>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0" Grid.Column="1" Grid.RowSpan="3" Text="После инициализации и загрузки главного окна запускается процесс заполнения уровня прогрессбара в одном потоке (1 ед/с) и процесс проверки значения прогрессбара и заданой отметки в другом (зациклинное ожидание по 0,1с, пока отметка не бует достигнута), как только уровень достигает отметки или отметка становится ниже заполненного уровня происходит звуковой сигнал." TextWrapping="WrapWithOverflow"/>
+    </Grid>
+</Window>
